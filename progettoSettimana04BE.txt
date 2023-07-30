@@ -1,0 +1,15 @@
+
+
+RICERCA POSTAZIONE PER CITTà E TIPO_POSTAZIONE
+SELECT * 
+FROM postazione
+JOIN edificio ON postazione.edificio_id = edificio.id
+WHERE postazione.tipo_postazione = 'SALA_RIUNIONI' AND edificio.città = 'Moreno lido';
+
+
+RICERCA NUMERO PRENOTAZIONI AVVENUTO NELLO STESSO GIORNO DA UN UTENTE
+
+SELECT COUNT(*) 
+FROM prenotazione
+JOIN utente ON prenotazione.utente_id = utente.id
+WHERE utente_id = 58 AND prenotazione.data_inizio_prenotazione = '2023-07-30';

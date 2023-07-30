@@ -1,6 +1,5 @@
 package GestionePrenotazioni.SC.Entities;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.github.javafaker.Faker;
 
-import GestionePrenotazioni.SC.CustomException.UserNotFoundException;
 import GestionePrenotazioni.SC.Service.EdificioService;
 import GestionePrenotazioni.SC.Service.PostazioneService;
 import GestionePrenotazioni.SC.Service.PrenotazioneService;
@@ -53,8 +51,7 @@ public class MainRunner implements CommandLineRunner {
 		listaEdifici = edificioSrv.findAll();
 		// System.err.println("Lista edifici prese dal DB");
 		// listaEdifici.forEach(e -> System.err.println(e));
-//		TipoPostazione tipo = TipoPostazione.values()[0];
-//		System.err.println(tipo);
+
 //		for (int i = 0; i < 20; i++) {
 //			Postazione postazione = new Postazione("Bello, Bellissimo, pulito",
 //					TipoPostazione.values()[faker.number().numberBetween(0, 2)], faker.number().numberBetween(20, 40),
@@ -113,21 +110,33 @@ public class MainRunner implements CommandLineRunner {
 		
 
 	/* NUOVA PRENOTAZIONE E CONTROLLI */
-	try {
-		
-		/*1. PRENDO UN UTENTE DAL DB*/
-		Utente utente = utenteSrv.findByid(55);
-		/*2. ISTANZIO UNA PRENOTAZIONE RANDOM*/
-		Prenotazione prenotazione07 = new Prenotazione(LocalDate.of(2023, 10, 6), utente,
-				listaPostazioni.get(faker.number().numberBetween(0, listaPostazioni.size() - 1)));
+//	try {
+//
+//		/* 1. PRENDO UN UTENTE DAL DB */
+//		Utente utente = utenteSrv.findByid(108);
+//		/* 2. PRENDO UNA POSTAZIONE DAL DB */
+//		Postazione postazione = postazioneSrv.findByid(207);
+//		/* 3. ISTANZIO UNA NUOVA PRENOTAZIONE */
+//		Prenotazione prenotazione07 = new Prenotazione(LocalDate.now().plusDays(2), utente, postazione);
+//		/* CONTROLLO LA PRENOTAZIONE PRIMA DI SALVARLA CORRETTAMENTE */
+//		prenotazioneSrv.checkAndSave(prenotazione07);
+//	} catch (UserNotFoundException ex) {
+//		System.err.println(ex.getMessage());
+//	} catch (PostazioneNotFoundException ex) {
+//		System.err.println(ex.getMessage());
+//	}
 
-		prenotazioneSrv.checkAndSave(prenotazione07);
-	} catch (UserNotFoundException ex) {
-		System.err.println(ex.getMessage());
-	}
-	// System.err.println(utenteSrv.checkUtentePrenotazioneGiorno(58,
-	// LocalDate.of(2023, 07, 30)));
 
+	/* RICERCA PER CITTA' E TIPO POSTAZIONE */
 
+//	TipoPostazione tipoPostazione = TipoPostazione.SALA_RIUNIONI;
+//	String citta = "Moreno lido";
+//	List<Postazione> listaPostazioniCittaTipo = postazioneSrv.ricercaCittaTipo(tipoPostazione, citta);
+//	if (listaPostazioniCittaTipo == null) {
+//		System.err.println("Non esistono postazioni per la tua ricerca");
+//	} else {
+//		System.err.println("Lista Postazioni " + tipoPostazione + " a " + citta);
+//		listaPostazioniCittaTipo.forEach(postazione -> System.err.println(postazione));
+//	}
 }
 }

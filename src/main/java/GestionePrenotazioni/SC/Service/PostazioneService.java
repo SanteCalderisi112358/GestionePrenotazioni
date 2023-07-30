@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import GestionePrenotazioni.SC.CustomException.PostazioneNotFoundException;
 import GestionePrenotazioni.SC.Entities.Postazione;
+import GestionePrenotazioni.SC.Entities.TipoPostazione;
 import GestionePrenotazioni.SC.Repo.IPostazioneRepo;
 
 @Service
@@ -34,6 +35,15 @@ public class PostazioneService {
 	public Postazione findByid(int idPostazione) throws PostazioneNotFoundException {
 		return postazioneRepo.findById(idPostazione).orElseThrow(() -> new PostazioneNotFoundException(idPostazione));
 
+	}
+
+	public List<Postazione> ricercaCittaTipo(TipoPostazione tipoPostazione, String citta) {
+		List<Postazione> listaPostazioniCittaTipo = postazioneRepo.ricercaCittaETipoPostazione(tipoPostazione, citta);
+		if (listaPostazioniCittaTipo.isEmpty()) {
+			return null;
+		} else {
+			return listaPostazioniCittaTipo;
+		}
 	}
 
 }

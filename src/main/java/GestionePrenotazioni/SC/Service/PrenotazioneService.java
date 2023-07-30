@@ -22,8 +22,7 @@ public class PrenotazioneService {
 	public void checkAndSave(Prenotazione prenotazione) throws UserNotFoundException, PostazioneNotFoundException {
 		int idUtente = prenotazione.getUtente().getId();
 		int idPostazione = prenotazione.getPostazione().getId();
-		System.err.println("Utente id: " + idUtente);
-		System.err.println("Postazione id: " + idPostazione);
+
 		Utente utente = utenteSrv.findByid(idUtente);
 		Postazione postazione = postazioneSrv.findByid(idPostazione);
 		System.err.println(utente);
@@ -37,6 +36,7 @@ public class PrenotazioneService {
 			return;
 		}else if(postazione.isLibera()&&utenteSrv.checkUtentePrenotazioneGiorno(idUtente, prenotazione.getDataInizioPrenotazione()) == 0) {
 			postazione.setLibera(false);
+			prenotazione.setPostazione(postazione);
 			postazioneSrv.save(postazione);
 			prenotazioneRepo.save(prenotazione);
 			System.err.println(prenotazione.toString() + " salvata correttamente");

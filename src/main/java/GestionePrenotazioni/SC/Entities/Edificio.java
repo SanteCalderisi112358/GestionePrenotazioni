@@ -17,18 +17,18 @@ public class Edificio {
 	private int id;
 	private String nome;
 	private String indirizzo;
-	private String città;
+	private String citta;
 
-	public Edificio(String nome, String indirizzo, String città) {
+	public Edificio(String nome, String indirizzo, String citta) {
 
 		this.nome = nome;
 		this.indirizzo = indirizzo;
-		this.città = città;
+		this.citta = citta;
 	}
 
 	@Override
 	public String toString() {
-		return "Edificio [id=" + id + ", Nome=" + nome + ", Indirizzo=" + indirizzo + ", Città=" + città + "]";
+		return "Edificio [id=" + id + ", Nome=" + nome + ", Indirizzo=" + indirizzo + ", Città=" + citta + "]";
 	}
 
 }
