@@ -8,4 +8,5 @@ import GestionePrenotazioni.SC.Entities.Postazione;
 @Repository
 public interface IPostazioneRepo extends JpaRepository<Postazione, Integer> {
 
+
 }
