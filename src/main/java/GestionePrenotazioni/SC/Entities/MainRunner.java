@@ -30,7 +30,7 @@ public class MainRunner implements CommandLineRunner {
 		
 		
 		Faker faker = new Faker(Locale.ITALIAN);
-		/* CREO 30 UTENTI E LI SALVO NEL DB */
+		/* 1. CREO 10 UTENTI E LI SALVO NEL DB */
 		
 //		for (int i = 0; i < 10; i++) {
 //			Utente utente = new Utente(faker.name().firstName(), faker.name().lastName(),
@@ -38,17 +38,17 @@ public class MainRunner implements CommandLineRunner {
 //			utenteSrv.save(utente);
 //		}
 
-		/* CREO 10 EDIFICI E LI SALVO NEL DB */
+		/* 2. CREO 10 EDIFICI E LI SALVO NEL DB */
 //		for (int i = 0; i < 5; i++) {
 //			Edificio edificio = new Edificio(faker.backToTheFuture().character(), faker.address().streetAddress(),
 //					faker.address().city());
 //			edificioSrv.save(edificio);
 //		}
 
-		/* CREO 20 POSTAZIONI LIBERE (libera=true) E LE SALVO */
+		/* 3. CREO 20 POSTAZIONI LIBERE (libera=true) E LE SALVO */
 
-		List<Edificio> listaEdifici = new ArrayList<Edificio>();
-		listaEdifici = edificioSrv.findAll();
+		// List<Edificio> listaEdifici = new ArrayList<Edificio>();
+		// listaEdifici = edificioSrv.findAll();
 		// System.err.println("Lista edifici prese dal DB");
 		// listaEdifici.forEach(e -> System.err.println(e));
 
@@ -78,35 +78,8 @@ public class MainRunner implements CommandLineRunner {
 		// listaUtenti.forEach(ut -> System.err.println(ut));
 
 
-	/*
-	 * PROVE SALVATAGGIO DI UNA PRENOTAZIONE EFFETTUATA OGGI DA UN UTENTE PER LA
-	 * PRIMA VOLTA VERIFICA CHE LA POSTAZIONE SIA LIBERA
-	 */
 
-//	Prenotazione prenotazione01 = new Prenotazione(LocalDate.now(),
-//			listaUtenti.get(faker.number().numberBetween(0, listaUtenti.size() - 1)),
-//			listaPostazioni.get(faker.number().numberBetween(0, listaPostazioni.size() - 1)));
-//	prenotazioneSrv.checkAndSave(prenotazione01);
-//	Prenotazione prenotazione02 = new Prenotazione(LocalDate.now(),
-//			listaUtenti.get(faker.number().numberBetween(0, listaUtenti.size() - 1)),
-//			listaPostazioni.get(faker.number().numberBetween(0, listaPostazioni.size() - 1)));
-//	prenotazioneSrv.checkAndSave(prenotazione02);
-//	Prenotazione prenotazione03 = new Prenotazione(LocalDate.now(),
-//			listaUtenti.get(faker.number().numberBetween(0, listaUtenti.size() - 1)),
-//			listaPostazioni.get(faker.number().numberBetween(0, listaPostazioni.size() - 1)));
-//	prenotazioneSrv.checkAndSave(prenotazione03);
-//	Prenotazione prenotazione04 = new Prenotazione(LocalDate.now(),
-//			listaUtenti.get(faker.number().numberBetween(0, listaUtenti.size() - 1)),
-//			listaPostazioni.get(faker.number().numberBetween(0, listaPostazioni.size() - 1)));
-//	prenotazioneSrv.checkAndSave(prenotazione04);
-//	Prenotazione prenotazione05 = new Prenotazione(LocalDate.now(),
-//			listaUtenti.get(faker.number().numberBetween(0, listaUtenti.size() - 1)),
-//			listaPostazioni.get(faker.number().numberBetween(0, listaPostazioni.size() - 1)));
-//	prenotazioneSrv.checkAndSave(prenotazione05);
-//	Prenotazione prenotazione06 = new Prenotazione(LocalDate.now(),
-//			listaUtenti.get(faker.number().numberBetween(0, listaUtenti.size() - 1)),
-//			listaPostazioni.get(faker.number().numberBetween(0, listaPostazioni.size() - 1)));
-//	prenotazioneSrv.checkAndSave(prenotazione06);
+
 		
 
 	/* NUOVA PRENOTAZIONE E CONTROLLI */
@@ -117,7 +90,7 @@ public class MainRunner implements CommandLineRunner {
 //		/* 2. PRENDO UNA POSTAZIONE DAL DB */
 //		Postazione postazione = postazioneSrv.findByid(207);
 //		/* 3. ISTANZIO UNA NUOVA PRENOTAZIONE */
-//		Prenotazione prenotazione07 = new Prenotazione(LocalDate.now().plusDays(2), utente, postazione);
+//		Prenotazione prenotazione07 = new Prenotazione(LocalDate.now(), utente, postazione);
 //		/* CONTROLLO LA PRENOTAZIONE PRIMA DI SALVARLA CORRETTAMENTE */
 //		prenotazioneSrv.checkAndSave(prenotazione07);
 //	} catch (UserNotFoundException ex) {
@@ -129,14 +102,16 @@ public class MainRunner implements CommandLineRunner {
 
 	/* RICERCA PER CITTA' E TIPO POSTAZIONE */
 
-//	TipoPostazione tipoPostazione = TipoPostazione.SALA_RIUNIONI;
-//	String citta = "Moreno lido";
-//	List<Postazione> listaPostazioniCittaTipo = postazioneSrv.ricercaCittaTipo(tipoPostazione, citta);
-//	if (listaPostazioniCittaTipo == null) {
-//		System.err.println("Non esistono postazioni per la tua ricerca");
-//	} else {
-//		System.err.println("Lista Postazioni " + tipoPostazione + " a " + citta);
-//		listaPostazioniCittaTipo.forEach(postazione -> System.err.println(postazione));
-//	}
+	TipoPostazione tipoPostazione = TipoPostazione.SALA_RIUNIONI;
+	String citta = "Flavio";
+	List<Postazione> listaPostazioniCittaTipo = postazioneSrv.ricercaCittaTipo(tipoPostazione, citta);
+	if (listaPostazioniCittaTipo == null) {
+		System.err.println("Non esistono postazioni per la tua ricerca");
+	} else {
+		System.err.println("Lista Postazioni " + tipoPostazione + " a " + citta);
+		listaPostazioniCittaTipo.forEach(postazione -> System.err.println(postazione));
+	}
+	
+
 }
 }
