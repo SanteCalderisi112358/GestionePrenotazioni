@@ -103,7 +103,7 @@ public class MainRunner implements CommandLineRunner {
 	/* RICERCA PER CITTA' E TIPO POSTAZIONE */
 
 	TipoPostazione tipoPostazione = TipoPostazione.SALA_RIUNIONI;
-	String citta = "Flavio";
+	String citta = "San";
 	List<Postazione> listaPostazioniCittaTipo = postazioneSrv.ricercaCittaTipo(tipoPostazione, citta);
 	if (listaPostazioniCittaTipo == null) {
 		System.err.println("Non esistono postazioni per la tua ricerca");
